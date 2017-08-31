@@ -11,7 +11,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
         app:titleTextColor="#fff"/>
 
     <android.support.v4.widget.DrawerLayout

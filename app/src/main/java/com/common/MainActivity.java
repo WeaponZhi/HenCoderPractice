@@ -48,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void init(Bundle savedInstanceState) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setLogo(R.mipmap.ic_launcher);
-        toolbar.setTitle(R.string.app_name);
-        toolbar.setSubtitle("Sub title");
         toolbar.setNavigationIcon(R.drawable.ic_drawer);
 
         setSupportActionBar(toolbar);
@@ -74,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
+                toolbar,
                 R.string.drawer_open,
                 R.string.drawer_close
         ) {
