@@ -2,18 +2,20 @@ package com.hencoder.hencoderpracticedraw1;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Practice1Activity extends AppCompatActivity {
+public class Practice1Fragment extends Fragment {
     TabLayout tabLayout;
     ViewPager pager;
     List<PageModel> pageModels = new ArrayList<>();
@@ -32,13 +34,12 @@ public class Practice1Activity extends AppCompatActivity {
         pageModels.add(new PageModel(R.layout.sample_pie_chart, R.string.title_draw_pie_chart, R.layout.practice_pie_chart));
     }
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_practice_1);
-
-        pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_practice_1,container,false);
+        pager = (ViewPager) rootView.findViewById(R.id.pager);
+        pager.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
 
             @Override
             public Fragment getItem(int position) {
@@ -57,13 +58,9 @@ public class Practice1Activity extends AppCompatActivity {
             }
         });
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(pager);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        return rootView;
     }
 
     private class PageModel {
